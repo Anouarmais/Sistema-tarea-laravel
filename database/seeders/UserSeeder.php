@@ -19,10 +19,10 @@ class UserSeeder extends Seeder
         //
         DB::table('users')->insert([
             'name' => 'Anouar Mais saydi ',
-        'email' => 'AnoaurMaissaydiaa@example.com',
+        'email' => 'a@m.es',
         'email_verified_at' => now(), 
         'password' => Hash::make('12345678'),
-        'role' => 'usuario', 
+        'role' => 'admin', 
         'remember_token' => Str::random(10), 
 
         ]);

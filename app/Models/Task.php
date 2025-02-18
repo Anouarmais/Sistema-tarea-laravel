@@ -22,9 +22,10 @@ class Task extends Model
 
     /**
      * Relación: Una tarea pertenece a un usuario.
-     */
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'admin_id');
-    }
+     */public function admin()
+{
+    return $this->belongsTo(User::class, 'admin_id');
+}
+
+    
 }

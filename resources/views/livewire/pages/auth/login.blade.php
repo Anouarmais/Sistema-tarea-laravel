@@ -9,9 +9,7 @@ new #[Layout('layouts.guest')] class extends Component
 {
     public LoginForm $form;
 
-    /**
-     * Handle an incoming authentication request.
-     */
+    
     public function login(): void
     {
         $this->validate();
@@ -20,14 +18,14 @@ new #[Layout('layouts.guest')] class extends Component
 
         Session::regenerate();
 
-        $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
+        $this->redirectIntended(default: route('tasksvista', absolute: false), navigate: true);
     }
 }; ?>
 
 <div>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
-
+    
     <form wire:submit="login">
         <!-- Email Address -->
         <div>

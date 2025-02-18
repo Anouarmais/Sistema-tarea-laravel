@@ -14,22 +14,41 @@ class DataController extends Controller
         return \App\Models\Task::all();
     }
 
-    public function index()
-    {
-        $tasks = $this->getTasks();
-        $users = User::all(); 
-        $projects = Project::all(); 
     
-        return view('dashboard', compact('tasks', 'users', 'projects'));
-    }
     
     public function tasksView()
     {
-        $tasks = $this->getTasks();
+        $tasks = \App\Models\Task::with('admin')->get();
+
         $users = User::all();
         $projects = Project::all();
     
         return view('tasksvista', compact('tasks', 'users', 'projects'));
     }
+
+    public function mistareas()
+    {
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'Debes iniciar sesión para ver tus tareas.');
+        }
+    
+        $tasks = \App\Models\Task::where('admin_id', Auth::id())->get();
+    
+        if ($tasks->isEmpty()) {
+            return view('vistauser', [
+                'tasks' => [],
+                'users' => User::all(),
+                'projects' => Project::all(),
+            ])->with('message', 'No tienes tareas asignadas.');
+        }
+    
+        return view('vistauser', [
+            'tasks' => $tasks,
+            'users' => User::all(),
+            'projects' => Project::all(),
+        ]);
+    }
+    
+    
     
 }
