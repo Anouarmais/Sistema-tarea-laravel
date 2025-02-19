@@ -78,7 +78,7 @@
             transition: 0.3s;
         }
 
-        /* Efecto hover en botón */
+
         .content a:hover {
             background: linear-gradient(45deg, #ff6b6b, #ff9f43);
             transform: scale(1.05);
@@ -97,7 +97,7 @@
         <!-- Contenido encima del video -->
         <div class="content">
             <h1>Aprovecha el tiempo al máximo</h1>
-            <a href="http://127.0.0.1:8000/login">¡Iniciar sesión!</a>
+            <a href="http://127.0.0.1:8000/vistauser">¡Iniciar sesión!</a>
         </div>
     </div>
 

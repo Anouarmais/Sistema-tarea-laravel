@@ -48,6 +48,23 @@ class TaskController extends Controller
         return redirect()->back()->with('success', 'Tarea actualizada correctamente!');
     }
 
+
+
+
+    public function updateStatus(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|exists:tasks,id',
+            'status' => 'required|in:pendiente,en proceso,completada',
+        ]);
+    
+        $task = Task::findOrFail($request->id);
+        $task->update(['status' => $request->status]);
+    
+        return response()->json(['message' => 'Estado actualizado correctamente']);
+    }
+    
+
     public function deleteTask($id) {
         try {
             $task = Task::findOrFail($id);

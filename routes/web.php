@@ -16,6 +16,10 @@ Route::get('/vistauser', [DataController::class, 'mistareas'])
     ->middleware('auth')
     ->name('vistauser');
 
+    Route::put('/task/update-status', [TaskController::class, 'updateStatus'])->name('task.updateStatus');
+
+
+
 
 Route::post('task' ,[TaskController::class, 'store'])->name('task.store');
 
@@ -36,6 +40,7 @@ Route::get('/tasksvista', [dataController::class, 'tasksView'])
     ->middleware(['auth', 'verified'])
     ->name('tasksvista');
 
+    Route::get('/filtro', [dataController::class, 'filtro'])->name('filtro');
 
 
 Route::view('profile', 'profile')

@@ -26,6 +26,26 @@ class DataController extends Controller
         return view('tasksvista', compact('tasks', 'users', 'projects'));
     }
 
+public function filtro(Request $request)
+{
+    $query = $request->input('query');
+
+    $tasks = \App\Models\Task::when($query, function ($q) use ($query) {
+        return $q->where('name', 'LIKE', "%{$query}%")
+                 ->orWhere('status', 'LIKE', "%{$query}%")
+                 ->orWhereHas('project', function ($q) use ($query) {
+                     $q->where('name', 'LIKE', "%{$query}%");
+                 });
+    })->get();
+
+    return view('filtro', compact('tasks'));
+}
+
+    
+
+    
+    
+
     public function mistareas()
     {
         if (!Auth::check()) {
