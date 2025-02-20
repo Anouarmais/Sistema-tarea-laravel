@@ -1,8 +1,8 @@
 @props(['tasks' => collect(), 'users' => collect(), 'projects' => collect()])
 
 <!-- Botón para abrir el modal -->
-<button id="openModal" class="bg-gray-200 text-white px-4 py-2 rounded hover:bg-green-600 flex items-center m-8 text-right" type="button">
-    ✍️
+<button id="openModal" class="bg-gray-200 text-balck px-4 py-2 rounded hover:bg-green-600 flex items-center m-8 text-right" type="button">
+   Crear Tarea
 </button>
 
 <!-- Modal -->

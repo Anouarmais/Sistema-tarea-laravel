@@ -19,7 +19,12 @@ Route::get('/vistauser', [DataController::class, 'mistareas'])
     Route::put('/task/update-status', [TaskController::class, 'updateStatus'])->name('task.updateStatus');
 
 
+    Route::post('/proyecto/nuevo', [TaskController::class, 'createProject'])->name('project.store');
 
+
+
+    
+    
 
 Route::post('task' ,[TaskController::class, 'store'])->name('task.store');
 

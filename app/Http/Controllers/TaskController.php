@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
+use App\Models\Project;
 use App\Models\DeletedTask;
 
 class TaskController extends Controller
@@ -26,7 +27,22 @@ class TaskController extends Controller
 
     return redirect()->back()->with('success', 'Task created successfully!');
 }
+public function createProject(Request $request)
+{
+    $validatedData = $request->validate([
+        'name' => 'required|max:255',
+        'description' => 'required',
+        'admin_id' => 'required|exists:users,id',
+    ]);
 
+    // Crear el proyecto con los datos validados
+    $project = Project::create($validatedData);
+
+    // Redirigir a otra vista o devolver respuesta
+    return redirect()->route('tasksvista')->with('success', 'Proyecto creado correctamente.');
+}
+
+    
     public function update(Request $request)
     {
         $request->validate([
