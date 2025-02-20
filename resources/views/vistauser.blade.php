@@ -16,5 +16,6 @@
 <x-mistareas :tasks="$tasks" :users="$users ?? collect()" :projects="$projects ?? collect()" />
 
 </x-app-layout>
+<x-footer></x-footer>
 </body>
 </html>

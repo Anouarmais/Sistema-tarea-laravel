@@ -16,7 +16,7 @@
 <x-filtro-comp :tasks="$tasks" :users="$users ?? collect()" :projects="$projects ?? collect()" ></x-filtro-comp>
 </x-app-layout>
 
-
+<x-footer></x-footer>
 
 
 </body>

@@ -42,6 +42,15 @@ public function filtro(Request $request)
 }
 
     
+public function todasuser(Request $request)
+{
+    $tasks = \App\Models\Task::with('admin')->get();
+
+    $users = User::all();
+    $projects = Project::all();
+
+    return view('todasusuario', compact('tasks', 'users', 'projects'));
+}
 
     
     

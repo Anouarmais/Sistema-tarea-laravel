@@ -42,6 +42,9 @@ Route::get('/tasksvista', [dataController::class, 'tasksView'])
 
     Route::get('/filtro', [dataController::class, 'filtro'])->name('filtro');
 
+    Route::get('/todasusuario', [dataController::class, 'todasuser'])
+    ->middleware(['auth', 'verified'])
+    ->name('todasusuario');
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])

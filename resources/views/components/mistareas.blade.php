@@ -8,43 +8,47 @@
 </head>
 <body>
 
+
+
 @props(['tasks' => collect()]) 
 @foreach ($tasks as $task)
-<div class="bg-white w-[1136px] mx-auto border border-gray-600 p-6 shadow-md m-9 flex gap-[4em]">
-    <div>
-        <label class="text-3xl">Proyect:</label><br>
-        <input class="mt-1" type="text" value="{{ $task->project->name ?? 'No Project' }}" disabled>
+<div class="bg-white w-[1136px] mx-auto border border-gray-600 p-6 rounded-xl shadow-md m-9 flex flex-wrap gap-[10px]">
+
+    <div class="flex gap-[285px] w-full">
+        <div>
+            <label class="text-3xl">Proyect:</label><br>
+            <input class="mt-1" type="text" value="{{ $task->project->name ?? 'No Project' }}" disabled>
+        </div>
+
+        <div>
+            <label class="text-3xl">Task:</label><br>
+            <input class="mt-1" type="text" value="{{ $task->name }}" disabled>
+        </div>
+
+        <div>
+            <label class="text-3xl">State:</label><br>
+            <select class="mt-1 border w-[125px] p-2 status-select" data-id="{{ $task->id }}">
+                <option value="pendiente" {{ $task->status == 'pendiente' ? 'selected' : '' }}>Pendiente</option>
+                <option value="en proceso" {{ $task->status == 'en proceso' ? 'selected' : '' }}>En proceso</option>
+                <option value="completada" {{ $task->status == 'completada' ? 'selected' : '' }}>Completada</option>
+            </select>
+        </div>
     </div>
 
-    <div>
-        <label class="text-3xl">Task:</label><br>
-        <input class="mt-1" type="text" value="{{ $task->name }}" disabled>
-    </div>
-
-    <div>
+    <div class="w-full mt-4">
         <label class="text-3xl">Description:</label><br>
-        <textarea class="mt-1" disabled>{{ $task->description }}</textarea>
+        <textarea  class="mt-1 w-full" style=" resize:none" disabled>{{ $task->description }}</textarea>
     </div>
 
-    <div>
-        <label class="text-3xl">State:</label><br>
-        <select class="mt-1 border w-[125px] p-2 status-select" data-id="{{ $task->id }}">
-            <option value="pendiente" {{ $task->status == 'pendiente' ? 'selected' : '' }}>Pendiente</option>
-            <option value="en proceso" {{ $task->status == 'en proceso' ? 'selected' : '' }}>En proceso</option>
-            <option value="completada" {{ $task->status == 'completada' ? 'selected' : '' }}>Completada</option>
-        </select>
+    <div class="w-full flex justify-end ">
+        <button class="bg-blue-500 text-white px-4 py-2  rounded text-md update-status" data-id="{{ $task->id }}">
+           Actualizar
+        </button>
     </div>
-
-<div class="flex items-center justify-end">
-    <button class="bg-blue-500 text-white px-4 py-3 text-sm rounded update-status" data-id="{{ $task->id }}">
-       Actualizar
-    </button>
-</div>
-
-
 
 </div>
 @endforeach
+
 
 
 

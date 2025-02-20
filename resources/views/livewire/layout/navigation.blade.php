@@ -22,11 +22,16 @@ new class extends Component
         <div class="flex justify-between h-16">
             <div class="flex">
                 
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('tasksvista') }}" wire:navigate>
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
-                    </a>
-                </div>
+            <div class="shrink-0 flex items-center">
+    @if(auth()->user()->role === 'admin')
+        <a href="{{ route('tasksvista') }}" wire:navigate>
+    @else
+        <a href="{{ route('todasusuario') }}" wire:navigate>
+    @endif
+            <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+        </a>
+</div>
+
 
             
                 @if(auth()->user()->role === 'admin')
@@ -42,6 +47,13 @@ new class extends Component
                 {{ __('Tus  tareas') }}
                 </x-nav-link>
                </div>
+               @if(auth()->user()->role === 'usuario')
+               <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                 <x-nav-link :href="route('todasusuario')" :active="request()->routeIs('todasusuario')" wire:navigate>
+                {{ __('Todas las tareas') }}
+                </x-nav-link>
+               </div>
+                @endif
 
                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                  <x-nav-link :href="route('filtro')" :active="request()->routeIs('filtro')" wire:navigate>
@@ -107,7 +119,13 @@ new class extends Component
                 {{ __('Filtro') }}
             </x-responsive-nav-link>
         </div>
-        
+        @if(auth()->user()->role === 'usuario')
+               <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('todasusuario')" :active="request()->routeIs('todasusuario')" wire:navigate>
+                {{ __('Todas las tareas') }}
+            </x-responsive-nav-link>
+        </div>
+        @endif
         @if(auth()->user()->role === 'admin')
     <div class="pt-2 pb-3 space-y-1">
         <x-responsive-nav-link :href="route('vistauser')" :active="request()->routeIs('vistauser')" wire:navigate>
